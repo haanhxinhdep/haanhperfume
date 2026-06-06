@@ -1,0 +1,325 @@
+
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Hà Anh Perfume</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --bg: #FAFAF8;
+      --surface: #FFFFFF;
+      --border: rgba(0,0,0,0.09);
+      --border-strong: rgba(0,0,0,0.16);
+      --text: #1a1a1a;
+      --text-muted: #6b6b6b;
+      --text-faint: #aaaaaa;
+      --radius-sm: 8px;
+      --radius-md: 14px;
+      --radius-lg: 18px;
+    }
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background: var(--bg);
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      padding: 2.5rem 1rem 5rem;
+    }
+    .page { width: 100%; max-width: 430px; }
+
+    /* Header */
+    .header { display: flex; flex-direction: column; align-items: center; padding: 2.5rem 0 1.5rem; gap: 12px; }
+    .logo-circle {
+      width: 80px; height: 80px; border-radius: 50%;
+      border: 1px solid var(--border-strong);
+      background: var(--surface);
+      display: flex; align-items: center; justify-content: center; overflow: hidden;
+    }
+    /* To use your logo image, replace the .logo-text div with:
+       <img src="logo.png" alt="Hà Anh Perfume" style="width:100%;height:100%;object-fit:cover"> */
+    .logo-text {
+      font-family: 'Cormorant Garamond', serif; font-size: 10px; font-weight: 300;
+      letter-spacing: 0.1em; color: var(--text-muted); text-align: center; line-height: 1.4;
+    }
+    .shop-name { font-family: 'Cormorant Garamond', serif; font-size: 26px; font-weight: 400; color: var(--text); letter-spacing: 0.04em; }
+    .shop-tagline { font-size: 13px; color: var(--text-muted); font-weight: 300; text-align: center; line-height: 1.55; max-width: 260px; }
+
+    /* Section label */
+    .section-label { font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--text-faint); font-weight: 400; margin: 1.5rem 0 0.7rem; }
+
+    /* Platform links */
+    .main-link {
+      display: flex; align-items: center; gap: 13px;
+      padding: 13px 15px; border-radius: var(--radius-md);
+      border: 1px solid var(--border); background: var(--surface);
+      text-decoration: none; margin-bottom: 10px;
+      transition: border-color 0.15s, background 0.15s, transform 0.1s;
+    }
+    .main-link:hover { border-color: var(--border-strong); background: #F5F4F0; }
+    .main-link:active { transform: scale(0.98); }
+    .link-icon {
+      width: 40px; height: 40px; border-radius: var(--radius-sm);
+      display: flex; align-items: center; justify-content: center; flex-shrink: 0;
+    }
+    .link-icon svg { width: 20px; height: 20px; }
+    .icon-tt { background: #F1EFE8; }
+    .icon-sp { background: #FAECE7; }
+    .icon-ig { background: #FBEAF0; }
+    .link-name { font-size: 14px; font-weight: 500; color: var(--text); }
+    .link-sub  { font-size: 11.5px; color: var(--text-muted); font-weight: 300; margin-top: 2px; }
+    .link-arrow { margin-left: auto; font-size: 18px; color: var(--text-faint); }
+
+    /* Divider */
+    .divider { border: none; border-top: 1px solid var(--border); margin: 1.5rem 0 0; }
+
+    /* Scent grid — 2 columns */
+    .scent-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 10px;
+      margin-top: 0.65rem;
+    }
+    .scent-card {
+      display: flex; flex-direction: column;
+      text-decoration: none;
+      border-radius: var(--radius-lg);
+      border: 1px solid var(--border);
+      overflow: hidden;
+      background: var(--surface);
+      transition: border-color 0.15s, transform 0.12s;
+    }
+    .scent-card:hover { border-color: var(--border-strong); transform: translateY(-2px); }
+    .scent-card:active { transform: scale(0.97); }
+
+    /* Flower image area — replace with <img> when you have photos */
+    .scent-img {
+      width: 100%; aspect-ratio: 1 / 1;
+      display: flex; align-items: center; justify-content: center;
+    }
+    .scent-img svg { width: 72px; height: 72px; }
+    /* To use a real photo, replace the <div class="scent-img">...</div> with:
+       <img src="rose.jpg" alt="Hoa Hồng Pháp" style="width:100%;aspect-ratio:1/1;object-fit:cover"> */
+
+    .scent-body { padding: 10px 11px 13px; }
+    .scent-name { font-family: 'Cormorant Garamond', serif; font-size: 14px; font-weight: 400; color: var(--text); letter-spacing: 0.02em; line-height: 1.2; }
+    .scent-notes { font-size: 10px; color: var(--text-faint); font-weight: 300; margin-top: 3px; line-height: 1.3; }
+    .scent-cta { display: inline-flex; align-items: center; gap: 4px; margin-top: 7px; font-size: 10.5px; color: var(--text-muted); font-weight: 400; }
+    .scent-cta svg { width: 10px; height: 10px; }
+
+    /* Footer */
+    .footer { text-align: center; font-size: 11px; color: var(--text-faint); font-weight: 300; margin-top: 2.5rem; letter-spacing: 0.08em; }
+  </style>
+</head>
+<body>
+<div class="page">
+
+  <div class="header">
+    <div class="logo-circle">
+      <div class="logo-text">HÀ ANH<br>PERFUME</div>
+    </div>
+    <div class="shop-name">Hà Anh Perfume</div>
+    <p class="shop-tagline">Tái hiện mùi hương bằng hình ảnh — hoa, ký ức, cảm xúc</p>
+  </div>
+
+  <div class="section-label">Tìm chúng tôi ở đây</div>
+
+  <a class="main-link" href="https://tiktok.com/@perfume.haanh" target="_blank" rel="noopener">
+    <div class="link-icon icon-tt">
+      <svg viewBox="0 0 24 24" fill="none" stroke="#2C2C2A" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M9 12a4 4 0 1 0 4 4V4a5 5 0 0 0 5 5"/>
+      </svg>
+    </div>
+    <div><div class="link-name">TikTok</div><div class="link-sub">@haanh.perfume</div></div>
+    <span class="link-arrow">›</span>
+  </a>
+
+  <a class="main-link" href="https://shopee.vn/haanhperfume" target="_blank" rel="noopener">
+    <div class="link-icon icon-sp">
+      <svg viewBox="0 0 24 24" fill="none" stroke="#993C1D" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/>
+      </svg>
+    </div>
+    <div><div class="link-name">Shopee</div><div class="link-sub">Shop chính thức</div></div>
+    <span class="link-arrow">›</span>
+  </a>
+
+  <a class="main-link" href="https://instagram.com/perfume.haanh" target="_blank" rel="noopener">
+    <div class="link-icon icon-ig">
+      <svg viewBox="0 0 24 24" fill="none" stroke="#993556" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+        <rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="0.5" fill="#993556"/>
+      </svg>
+    </div>
+    <div><div class="link-name">Instagram</div><div class="link-sub">@haanh.perfume</div></div>
+    <span class="link-arrow">›</span>
+  </a>
+
+  <hr class="divider">
+  <div class="section-label">Bộ sưu tập</div>
+
+  <!-- ══════════════════════════════════════════════════════════
+       SCENT GRID — hướng dẫn chỉnh sửa:
+
+       Mỗi <a class="scent-card"> là một mùi. Để chỉnh:
+       - href=""  → link Shopee sản phẩm cụ thể
+       - Thay <div class="scent-img">...</div> bằng:
+         <img src="anh-cua-ban.jpg" alt="Tên mùi" style="width:100%;aspect-ratio:1/1;object-fit:cover">
+       - scent-name: tên mùi
+       - scent-notes: hương điệu
+       Để thêm mùi mới: copy 1 block <a class="scent-card">...</a>
+  ═══════════════════════════════════════════════════════════ -->
+
+  <div class="scent-grid">
+
+    <a class="scent-card" href="https://shopee.vn/haanhperfume" target="_blank" rel="noopener">
+      <div class="scent-img" style="background:#F9F1E8">
+        <svg viewBox="0 0 72 72" fill="none">
+          <circle cx="36" cy="36" r="18" fill="#E8C87A" opacity="0.35"/>
+          <circle cx="36" cy="36" r="10" fill="#D4A843" opacity="0.55"/>
+          <ellipse cx="36" cy="20" rx="5" ry="8" fill="#C8A052" opacity="0.5" transform="rotate(-15 36 20)"/>
+          <ellipse cx="50" cy="28" rx="5" ry="8" fill="#C8A052" opacity="0.4" transform="rotate(45 50 28)"/>
+          <ellipse cx="22" cy="28" rx="5" ry="8" fill="#C8A052" opacity="0.4" transform="rotate(-45 22 28)"/>
+          <ellipse cx="44" cy="48" rx="5" ry="8" fill="#C8A052" opacity="0.35" transform="rotate(30 44 48)"/>
+          <ellipse cx="28" cy="48" rx="5" ry="8" fill="#C8A052" opacity="0.35" transform="rotate(-30 28 48)"/>
+          <line x1="36" y1="54" x2="36" y2="64" stroke="#8B6914" stroke-width="1.5" stroke-linecap="round"/>
+          <ellipse cx="30" cy="60" rx="6" ry="3" fill="#6B8C3A" opacity="0.5" transform="rotate(-20 30 60)"/>
+        </svg>
+      </div>
+      <div class="scent-body">
+        <div class="scent-name">Hoa Hồng Pháp</div>
+        <div class="scent-notes">Floral · Rose · Musqué</div>
+        <div class="scent-cta">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+          Xem trên Shopee
+        </div>
+      </div>
+    </a>
+
+    <a class="scent-card" href="https://shopee.vn/haanhperfume" target="_blank" rel="noopener">
+      <div class="scent-img" style="background:#EEF7F2">
+        <svg viewBox="0 0 72 72" fill="none">
+          <circle cx="36" cy="36" r="14" fill="#9FE1CB" opacity="0.4"/>
+          <g opacity="0.7">
+            <circle cx="36" cy="22" r="4" fill="#5DCAA5"/>
+            <circle cx="46" cy="28" r="3.5" fill="#5DCAA5"/>
+            <circle cx="50" cy="38" r="3.5" fill="#5DCAA5"/>
+            <circle cx="46" cy="48" r="3.5" fill="#5DCAA5"/>
+            <circle cx="36" cy="52" r="4" fill="#5DCAA5"/>
+            <circle cx="26" cy="48" r="3.5" fill="#5DCAA5"/>
+            <circle cx="22" cy="38" r="3.5" fill="#5DCAA5"/>
+            <circle cx="26" cy="28" r="3.5" fill="#5DCAA5"/>
+          </g>
+          <circle cx="36" cy="36" r="6" fill="#1D9E75" opacity="0.6"/>
+          <line x1="36" y1="56" x2="36" y2="64" stroke="#0F6E56" stroke-width="1.5" stroke-linecap="round"/>
+        </svg>
+      </div>
+      <div class="scent-body">
+        <div class="scent-name">Mimosa Sáng Sớm</div>
+        <div class="scent-notes">Floral · Fresh · Green</div>
+        <div class="scent-cta">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+          Xem trên Shopee
+        </div>
+      </div>
+    </a>
+
+    <a class="scent-card" href="https://shopee.vn/haanhperfume" target="_blank" rel="noopener">
+      <div class="scent-img" style="background:#FDF0F5">
+        <svg viewBox="0 0 72 72" fill="none">
+          <circle cx="36" cy="36" r="16" fill="#F4C0D1" opacity="0.4"/>
+          <ellipse cx="36" cy="24" rx="7" ry="10" fill="#ED93B1" opacity="0.5"/>
+          <ellipse cx="48" cy="34" rx="7" ry="10" fill="#ED93B1" opacity="0.45" transform="rotate(72 48 34)"/>
+          <ellipse cx="44" cy="48" rx="7" ry="10" fill="#ED93B1" opacity="0.45" transform="rotate(144 44 48)"/>
+          <ellipse cx="28" cy="48" rx="7" ry="10" fill="#ED93B1" opacity="0.45" transform="rotate(216 28 48)"/>
+          <ellipse cx="24" cy="34" rx="7" ry="10" fill="#ED93B1" opacity="0.45" transform="rotate(288 24 34)"/>
+          <circle cx="36" cy="36" r="5" fill="#D4537E" opacity="0.6"/>
+        </svg>
+      </div>
+      <div class="scent-body">
+        <div class="scent-name">Peony & Lụa</div>
+        <div class="scent-notes">Floral · Powdery · Soft</div>
+        <div class="scent-cta">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+          Xem trên Shopee
+        </div>
+      </div>
+    </a>
+
+    <a class="scent-card" href="https://shopee.vn/haanhperfume" target="_blank" rel="noopener">
+      <div class="scent-img" style="background:#F1F0FC">
+        <svg viewBox="0 0 72 72" fill="none">
+          <circle cx="36" cy="36" r="16" fill="#CECBF6" opacity="0.4"/>
+          <rect x="30" y="16" width="12" height="22" rx="6" fill="#AFA9EC" opacity="0.6"/>
+          <ellipse cx="24" cy="30" rx="5" ry="9" fill="#AFA9EC" opacity="0.5" transform="rotate(-30 24 30)"/>
+          <ellipse cx="48" cy="30" rx="5" ry="9" fill="#AFA9EC" opacity="0.5" transform="rotate(30 48 30)"/>
+          <line x1="36" y1="38" x2="36" y2="58" stroke="#534AB7" stroke-width="1.5" stroke-linecap="round"/>
+          <ellipse cx="29" cy="54" rx="7" ry="3" fill="#3B6D11" opacity="0.45" transform="rotate(-15 29 54)"/>
+          <ellipse cx="43" cy="56" rx="7" ry="3" fill="#3B6D11" opacity="0.4" transform="rotate(20 43 56)"/>
+        </svg>
+      </div>
+      <div class="scent-body">
+        <div class="scent-name">Oải Hương Tím</div>
+        <div class="scent-notes">Herbal · Lavender · Calm</div>
+        <div class="scent-cta">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+          Xem trên Shopee
+        </div>
+      </div>
+    </a>
+
+    <a class="scent-card" href="https://shopee.vn/haanhperfume" target="_blank" rel="noopener">
+      <div class="scent-img" style="background:#FEF6EA">
+        <svg viewBox="0 0 72 72" fill="none">
+          <circle cx="36" cy="36" r="16" fill="#FAC775" opacity="0.35"/>
+          <g opacity="0.65">
+            <ellipse cx="36" cy="22" rx="6" ry="9" fill="#EF9F27"/>
+            <ellipse cx="48" cy="30" rx="6" ry="9" fill="#EF9F27" transform="rotate(60 48 30)"/>
+            <ellipse cx="48" cy="44" rx="6" ry="9" fill="#EF9F27" transform="rotate(120 48 44)"/>
+            <ellipse cx="36" cy="50" rx="6" ry="9" fill="#EF9F27" transform="rotate(180 36 50)"/>
+            <ellipse cx="24" cy="44" rx="6" ry="9" fill="#EF9F27" transform="rotate(240 24 44)"/>
+            <ellipse cx="24" cy="30" rx="6" ry="9" fill="#EF9F27" transform="rotate(300 24 30)"/>
+          </g>
+          <circle cx="36" cy="36" r="7" fill="#BA7517" opacity="0.55"/>
+        </svg>
+      </div>
+      <div class="scent-body">
+        <div class="scent-name">Ylang Hoàng Hôn</div>
+        <div class="scent-notes">Oriental · Warm · Exotic</div>
+        <div class="scent-cta">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+          Xem trên Shopee
+        </div>
+      </div>
+    </a>
+
+    <a class="scent-card" href="https://shopee.vn/haanhperfume" target="_blank" rel="noopener">
+      <div class="scent-img" style="background:#F6F5F2">
+        <svg viewBox="0 0 72 72" fill="none">
+          <circle cx="36" cy="36" r="16" fill="#D3D1C7" opacity="0.4"/>
+          <ellipse cx="36" cy="22" rx="8" ry="11" fill="#B4B2A9" opacity="0.5"/>
+          <ellipse cx="49" cy="33" rx="8" ry="11" fill="#B4B2A9" opacity="0.45" transform="rotate(72 49 33)"/>
+          <ellipse cx="44" cy="49" rx="8" ry="11" fill="#B4B2A9" opacity="0.4" transform="rotate(144 44 49)"/>
+          <ellipse cx="28" cy="49" rx="8" ry="11" fill="#B4B2A9" opacity="0.4" transform="rotate(216 28 49)"/>
+          <ellipse cx="23" cy="33" rx="8" ry="11" fill="#B4B2A9" opacity="0.45" transform="rotate(288 23 33)"/>
+          <circle cx="36" cy="36" r="6" fill="#888780" opacity="0.55"/>
+        </svg>
+      </div>
+      <div class="scent-body">
+        <div class="scent-name">Gardenia Trắng</div>
+        <div class="scent-notes">Floral · Creamy · Clean</div>
+        <div class="scent-cta">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+          Xem trên Shopee
+        </div>
+      </div>
+    </a>
+
+  </div>
+
+  <div class="footer">haanh.perfume · 2025</div>
+</div>
+</body>
+</html>
