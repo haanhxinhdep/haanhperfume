@@ -3,82 +3,106 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Hà Anh Perfume</title>
-  <meta name="description" content="Hơn cả một mùi hương — Hà Anh Perfume">
+  <title>Hà Anh Perfume - Nước Chiết Chính Hãng</title>
+  <meta name="description" content="Hơn cả một mùi hương - Hà Anh Perfume">
   <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;1,400&family=Be+Vietnam+Pro:wght@300;400;500;600&display=swap" rel="stylesheet">
   <style>
     *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
     :root{
-      --bg:#FAFAF8;--surface:#fff;
-      --border:rgba(0,0,0,0.08);--border-md:rgba(0,0,0,0.14);
-      --text:#1a1a1a;--muted:#6b6b6b;--faint:#b5b5b5;
-      --accent:#B8943F;
-      --r-sm:8px;--r-md:14px;--r-lg:20px;
+      --bg:#FAFAF7;--surface:#fff;
+      --border:rgba(0,0,0,0.07);--border-md:rgba(0,0,0,0.13);
+      --text:#1a1a1a;--muted:#6b6b6b;--faint:#b0b0b0;
+      --accent:#B8943F;--accent-light:#F7F0E3;--accent-dark:#9A7A2F;
+      --r-sm:8px;--r-md:14px;--r-lg:22px;
     }
-    body{font-family:'DM Sans',sans-serif;background:var(--bg);min-height:100vh;display:flex;justify-content:center;padding:0 0 6rem}
+    html{scroll-behavior:smooth}
+    body{font-family:'Be Vietnam Pro',sans-serif;background:var(--bg);min-height:100vh;display:flex;justify-content:center;padding:0 0 6rem}
     .page{width:100%;max-width:430px}
-    .hero{display:flex;flex-direction:column;align-items:center;padding:3rem 1.5rem 2rem;gap:14px;text-align:center}
-    .logo-wrap{width:100px;height:100px;border-radius:50%;border:1px solid var(--border-md);background:var(--surface);overflow:hidden;display:flex;align-items:center;justify-content:center}
+
+    /* HERO */
+    .hero{display:flex;flex-direction:column;align-items:center;padding:3rem 1.5rem 2rem;gap:12px;text-align:center;position:relative}
+    .hero::before{content:'';position:absolute;top:0;left:0;right:0;height:180px;background:linear-gradient(180deg,#F7F0E3 0%,transparent 100%);pointer-events:none;z-index:0}
+    .logo-wrap{width:100px;height:100px;border-radius:50%;border:1.5px solid rgba(184,148,63,0.25);background:var(--surface);overflow:hidden;display:flex;align-items:center;justify-content:center;position:relative;z-index:1;box-shadow:0 4px 20px rgba(184,148,63,0.12),0 0 0 6px rgba(184,148,63,0.06)}
     .logo-wrap img{width:100%;height:100%;object-fit:cover}
-    .shop-name{font-family:'Cormorant Garamond',serif;font-size:28px;font-weight:400;color:var(--text);letter-spacing:.04em}
-    .tagline{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:16px;font-weight:300;color:var(--muted)}
-    .bio{font-size:13px;font-weight:300;color:var(--muted);line-height:1.75;max-width:300px}
+    .shop-name{font-family:'Playfair Display',serif;font-size:26px;font-weight:500;color:var(--text);letter-spacing:.04em;position:relative;z-index:1}
+    .tagline{font-family:'Playfair Display',serif;font-style:italic;font-size:15px;font-weight:400;color:var(--accent);position:relative;z-index:1}
+    .bio{font-size:13px;font-weight:400;color:var(--muted);line-height:1.8;max-width:300px;position:relative;z-index:1}
+
+    /* DIVIDER */
     .sep{border:none;border-top:1px solid var(--border);margin:0 1.5rem}
-    .label{font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:var(--faint);font-weight:400;margin:1.5rem 1.5rem .75rem}
-    .links{display:flex;flex-direction:column;gap:10px;padding:0 1.5rem}
-    .link-btn{display:flex;align-items:center;gap:14px;padding:14px 16px;border-radius:var(--r-md);border:1px solid var(--border);background:var(--surface);text-decoration:none;transition:border-color .15s,background .15s,transform .1s}
-    .link-btn:hover{border-color:var(--border-md);background:#F5F4F0}
+
+    /* LABELS */
+    .label{font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:var(--faint);font-weight:500;margin:1.5rem 1.5rem .75rem;font-family:'Be Vietnam Pro',sans-serif}
+
+    /* SOCIAL LINKS */
+    .links{display:flex;flex-direction:column;gap:9px;padding:0 1.5rem}
+    .link-btn{display:flex;align-items:center;gap:14px;padding:13px 16px;border-radius:var(--r-md);border:1px solid var(--border);background:var(--surface);text-decoration:none;transition:border-color .18s,background .18s,transform .12s,box-shadow .18s}
+    .link-btn:hover{border-color:rgba(184,148,63,0.3);background:#FFFDF9;transform:translateY(-1px);box-shadow:0 3px 12px rgba(184,148,63,0.1)}
     .link-btn:active{transform:scale(.98)}
-    .link-icon{width:42px;height:42px;border-radius:var(--r-sm);display:flex;align-items:center;justify-content:center;flex-shrink:0}
+    .link-icon{width:40px;height:40px;border-radius:var(--r-sm);display:flex;align-items:center;justify-content:center;flex-shrink:0}
     .link-icon svg{width:20px;height:20px}
     .i-tt{background:#F1EFE8}.i-sp{background:#FAECE7}.i-ig{background:#FBEAF0}.i-fb{background:#EBF0FA}
     .link-label{flex:1}
     .link-name{font-size:14px;font-weight:500;color:var(--text)}
-    .link-sub{font-size:11.5px;color:var(--muted);font-weight:300;margin-top:2px}
-    .link-arr{font-size:20px;color:var(--faint);line-height:1}
+    .link-sub{font-size:11.5px;color:var(--muted);font-weight:400;margin-top:2px}
+    .link-arr{font-size:18px;color:var(--faint);line-height:1}
+
     /* BESTSELLER */
     .bs-header{display:flex;align-items:center;justify-content:space-between;padding:0 1.5rem;margin:1.4rem 0 .9rem}
     .bs-header-left{display:flex;align-items:center;gap:7px}
-    .bs-badge{font-size:10px;padding:3px 10px;border-radius:20px;background:#FEF6EA;color:#854F0B;font-weight:500;border:0.5px solid #EF9F27}
-    .bs-scroll{display:flex;gap:10px;padding:0 1.5rem 4px;overflow-x:auto;-webkit-overflow-scrolling:touch;scrollbar-width:none}
+    .bs-badge{font-size:10px;padding:3px 10px;border-radius:20px;background:#FEF6EA;color:#854F0B;font-weight:500;border:0.5px solid #EF9F27;letter-spacing:.02em}
+    .bs-scroll{display:flex;gap:10px;padding:0 1.5rem 8px;overflow-x:auto;-webkit-overflow-scrolling:touch;scrollbar-width:none}
     .bs-scroll::-webkit-scrollbar{display:none}
-    .bs-card{flex-shrink:0;width:136px;background:var(--surface);border-radius:var(--r-lg);border:1px solid var(--border);overflow:hidden;text-decoration:none;display:flex;flex-direction:column;transition:border-color .15s,transform .12s}
-    .bs-card:hover{border-color:var(--border-md);transform:translateY(-2px)}
+    .bs-card{flex-shrink:0;width:138px;background:var(--surface);border-radius:var(--r-lg);border:1px solid var(--border);overflow:hidden;text-decoration:none;display:flex;flex-direction:column;transition:border-color .18s,transform .14s,box-shadow .18s}
+    .bs-card:hover{border-color:rgba(184,148,63,0.25);transform:translateY(-2px);box-shadow:0 6px 20px rgba(0,0,0,0.07)}
     .bs-card:active{transform:scale(.97)}
     .bs-img{width:100%;aspect-ratio:1/1;position:relative;overflow:hidden}
-    .bs-img img{width:100%;height:100%;object-fit:cover;display:block}
-    .bs-rank{position:absolute;top:7px;left:7px;width:22px;height:22px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:500}
+    .bs-img img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .35s ease}
+    .bs-card:hover .bs-img img{transform:scale(1.04)}
+    .bs-rank{position:absolute;top:7px;left:7px;width:22px;height:22px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:600}
     .bs-rank-1{background:#1a1a1a;color:#fff}
-    .bs-rank-n{background:rgba(255,255,255,.82);color:var(--muted);border:0.5px solid var(--border-md)}
+    .bs-rank-n{background:rgba(255,255,255,.85);color:var(--muted);border:0.5px solid var(--border-md)}
     .bs-body{padding:9px 10px 12px}
-    .bs-name{font-family:'Cormorant Garamond',serif;font-size:13px;font-weight:400;color:var(--text);letter-spacing:.02em;line-height:1.25}
-    .bs-note{font-size:10px;color:var(--faint);font-weight:300;margin-top:3px}
-    .bs-link{display:inline-flex;align-items:center;gap:3px;margin-top:7px;font-size:10px;color:var(--accent);font-weight:500}
+    .bs-name{font-family:'Playfair Display',serif;font-size:13px;font-weight:400;color:var(--text);letter-spacing:.01em;line-height:1.3}
+    .bs-note{font-size:10px;color:var(--faint);font-weight:400;margin-top:3px;line-height:1.4}
+    .bs-link{display:inline-flex;align-items:center;gap:3px;margin-top:8px;font-size:10px;color:var(--accent);font-weight:500}
     .bs-link svg{width:10px;height:10px;stroke:var(--accent);fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+
     /* TABS */
     .tabs-wrap{padding:0 1.5rem}
-    .tabs{display:flex;border-radius:var(--r-md);border:1px solid var(--border);overflow:hidden;background:var(--surface)}
-    .tab-btn{flex:1;padding:11px 6px;font-size:12px;font-weight:400;color:var(--muted);background:none;border:none;cursor:pointer;transition:background .15s,color .15s;line-height:1.3;text-align:center}
-    .tab-btn:not(:last-child){border-right:1px solid var(--border)}
+    .tabs{display:flex;border-radius:var(--r-md);border:1px solid var(--border);overflow:hidden;background:var(--surface);padding:3px;gap:2px}
+    .tab-btn{flex:1;padding:9px 6px;font-size:12px;font-weight:400;color:var(--muted);background:none;border:none;cursor:pointer;transition:background .15s,color .15s;line-height:1.3;text-align:center;border-radius:10px;font-family:'Be Vietnam Pro',sans-serif}
     .tab-btn.active{background:var(--text);color:#fff;font-weight:500}
     .tab-btn:hover:not(.active){background:#F5F4F0;color:var(--text)}
     .tab-panel{display:none;padding:0 1.5rem}
     .tab-panel.active{display:block}
+
+    /* SCENT GRID */
     .scent-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;margin-top:.75rem}
-    .scent-card{display:flex;flex-direction:column;text-decoration:none;border-radius:var(--r-lg);border:1px solid var(--border);overflow:hidden;background:var(--surface);transition:border-color .15s,transform .12s}
-    .scent-card:hover{border-color:var(--border-md);transform:translateY(-2px)}
+    .scent-card{display:flex;flex-direction:column;text-decoration:none;border-radius:var(--r-lg);border:1px solid var(--border);overflow:hidden;background:var(--surface);transition:border-color .18s,transform .14s,box-shadow .18s}
+    .scent-card:hover{border-color:rgba(184,148,63,0.25);transform:translateY(-2px);box-shadow:0 6px 20px rgba(0,0,0,0.07)}
     .scent-card:active{transform:scale(.97)}
     .scent-img{width:100%;aspect-ratio:1/1;overflow:hidden;position:relative}
-    .scent-img img{width:100%;height:100%;object-fit:cover;display:block}
-    .scent-img .overlay{position:absolute;bottom:0;left:0;right:0;padding:10px 10px 8px;background:linear-gradient(to top,rgba(0,0,0,.48),transparent)}
-    .overlay-name{font-family:'Cormorant Garamond',serif;font-size:12px;font-weight:400;color:#fff;line-height:1.2}
+    .scent-img img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .35s ease}
+    .scent-card:hover .scent-img img{transform:scale(1.04)}
+    .scent-img .overlay{position:absolute;bottom:0;left:0;right:0;padding:10px 10px 8px;background:linear-gradient(to top,rgba(0,0,0,.5),transparent)}
+    .overlay-name{font-family:'Playfair Display',serif;font-size:12px;font-weight:400;color:#fff;line-height:1.2}
     .scent-body{padding:10px 12px 13px}
-    .scent-name{font-family:'Cormorant Garamond',serif;font-size:13.5px;font-weight:400;color:var(--text);letter-spacing:.02em;line-height:1.25}
-    .scent-desc{font-size:11px;color:var(--muted);font-weight:300;margin-top:4px;line-height:1.5}
+    .scent-name{font-family:'Playfair Display',serif;font-size:13.5px;font-weight:400;color:var(--text);letter-spacing:.01em;line-height:1.3}
+    .scent-desc{font-size:11px;color:var(--muted);font-weight:400;margin-top:4px;line-height:1.5}
     .scent-cta{display:inline-flex;align-items:center;gap:4px;margin-top:8px;font-size:10.5px;color:var(--accent);font-weight:500}
     .scent-cta svg{width:10px;height:10px;fill:none;stroke:var(--accent);stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
-    .footer{text-align:center;font-size:11px;color:var(--faint);font-weight:300;margin-top:2.5rem;letter-spacing:.1em;padding:0 1.5rem}
+
+    /* FOOTER */
+    .footer{text-align:center;font-size:11px;color:var(--faint);font-weight:400;margin-top:2.5rem;letter-spacing:.08em;padding:0 1.5rem}
+
+    /* SUBTLE ANIMATION */
+    @media (prefers-reduced-motion: no-preference) {
+      .page{animation:fadeUp .4s ease both}
+      @keyframes fadeUp{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
+    }
   </style>
 </head>
 <body>
@@ -88,6 +112,7 @@
     <div class="logo-wrap"><img src="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAUDBAQEAwUEBAQFBQUGBwwIBwcHBw8LCwkMEQ8SEhEPERETFhwXExQaFRERGCEYGh0dHx8fExciJCIeJBweHx7/2wBDAQUFBQcGBw4ICA4eFBEUHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh7/wAARCAGQAZADASIAAhEBAxEB/8QAHwAAAQUBAQEBAQEAAAAAAAAAAAECAwQFBgcICQoL/8QAtRAAAgEDAwIEAwUFBAQAAAF9AQIDAAQRBRIhMUEGE1FhByJxFDKBkaEII0KxwRVS0fAkM2JyggkKFhcYGRolJicoKSo0NTY3ODk6Q0RFRkdISUpTVFVWV1hZWmNkZWZnaGlqc3R1dnd4eXqDhIWGh4iJipKTlJWWl5iZmqKjpKWmp6ipqrKztLW2t7i5usLDxMXGx8jJytLT1NXW19jZ2uHi4+Tl5ufo6erx8vP09fb3+Pn6/8QAHwEAAwEBAQEBAQEBAQAAAAAAAAECAwQFBgcICQoL/8QAtREAAgECBAQDBAcFBAQAAQJ3AAECAxEEBSExBhJBUQdhcRMiMoEIFEKRobHBCSMzUvAVYnLRChYkNOEl8RcYGRomJygpKjU2Nzg5OkNERUZHSElKU1RVVldYWVpjZGVmZ2hpanN0dXZ3eHl6goOEhYaHiImKkpOUlZaXmJmaoqOkpaanqKmqsrO0tba3uLm6wsPExcbHyMnK0tPU1dbX2Nna4uPk5ebn6Onq8vP09fb3+Pn6/9oADAMBAAIRAxEAPwD6toooqCwooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKAFCsRlVY/QUuyT/nm/8A3ya4bx78K/BvjjWItW8Q2uozXUUAt0NvqU9uuwMzD5UYAnLHnr+VcbrX7NXw8vrVorK98UaVKfuywaxJJj/gMm4GgD2vy5P+eb/98mjy5P8Anm//AHya/OD9oH4deL/hL4jgtLjXr3UdKvlZ7C/WV08wLjcjruO11yMjJBBBHt5l/besf9BW+/8AAl/8adhXP1s8uT/nm/8A3yaPLk/55v8A98mvzJ+C/hLxj8UPGkXh3SdYu7dAhnu7uSeQpbQggFyAeTkgBe5I6ckfYnh39mXwJp9oseqax4q1mfHzSy6o8C59ljxgfUmiwJnuJRwMlGA9xSV594Q+DngPwp4gtte0Wz1SO/tt3lNNq1xMg3KVOUdip4J6ivQaQwooooAACTgAk07y5P8Anm//AHyazPE2i6f4j0G80PVUlksryPy5limaJiuQeGUgjkDpXm0v7O/wwdcLZ69G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KKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigD//Z" alt="Hà Anh Perfume logo"></div>
     <div class="shop-name">Hà Anh Perfume</div>
     <div class="tagline">"Hơn cả một mùi hương"</div>
+    <div style="width:30px;height:1px;background:var(--accent);opacity:.5;margin:0 auto -4px"></div>
     <p class="bio">Hãy để Hà Anh Perfume tìm ra mùi hương góp phần tạo nên dấu ấn cá nhân của riêng bạn!</p>
   </div>
 
@@ -171,6 +196,13 @@
   </div>
 
   <hr class="sep" style="margin-top:1.75rem">
+    <!-- Brand statement -->
+  <div style="margin:1.75rem 1.5rem 0;padding:18px 20px;background:linear-gradient(135deg,#FFFDF9 0%,#FEF6EA 100%);border-radius:16px;border:1px solid rgba(184,148,63,0.18);position:relative;overflow:hidden">
+    <div style="position:absolute;top:-10px;right:14px;font-size:48px;opacity:.06;font-family:Georgia,serif;line-height:1">"</div>
+    <p style="font-family:'Playfair Display',serif;font-size:14px;font-weight:400;color:#3a3020;line-height:1.75;font-style:italic;position:relative;z-index:1">Chúng tôi không chỉ bán nước hoa. Chúng tôi giúp bạn tìm ra ngôn ngữ mùi hương của riêng mình.</p>
+    <div style="margin-top:10px;font-size:10px;color:#B8943F;letter-spacing:.12em;font-weight:600">HA ANH PERFUME</div>
+  </div>
+
   <div class="label">Bộ sưu tập mùi hương</div>
   <div class="tabs-wrap">
     <div class="tabs" role="tablist">
@@ -280,7 +312,36 @@
     </div>
   </div>
 
-  <div class="footer">perfume.haanh · since 2022</div>
+  
+    <!-- Shopping tip -->
+  <div style="margin:1.5rem 1.5rem 0;padding:14px 16px;background:#F7F5F0;border-radius:12px;border-left:3px solid #B8943F">
+    <p style="font-size:12px;color:#5a5040;line-height:1.65;font-weight:400">💡 <strong style="font-weight:600;color:#3a3020">Mẹo mua hàng:</strong> Giá trên Shopee có thể cao hơn một chút do phí sàn - đặt hàng qua TikTok, Instagram hoặc Facebook của shop để được giá tốt nhất nhé!</p>
+  </div>
+
+  <!-- Trust badges -->
+  <div style="margin:1.25rem 1.5rem 0;display:flex;align-items:stretch;gap:0;border:1px solid rgba(184,148,63,0.18);border-radius:16px;background:#FFFDF9;overflow:hidden">
+    <div style="flex:1;text-align:center;padding:13px 8px">
+      <div style="font-size:15px;margin-bottom:4px">✓</div>
+      <div style="font-size:9.5px;color:#9A7A2F;letter-spacing:.04em;font-weight:600;line-height:1.45">CAM KẾT<br>CHÍNH HÃNG</div>
+    </div>
+    <div style="width:1px;background:rgba(184,148,63,0.15);margin:10px 0"></div>
+    <div style="flex:1;text-align:center;padding:13px 8px">
+      <div style="font-size:15px;margin-bottom:4px">🚚</div>
+      <div style="font-size:9.5px;color:#9A7A2F;letter-spacing:.04em;font-weight:600;line-height:1.45">FREESHIP<br>TOÀN QUỐC</div>
+    </div>
+    <div style="width:1px;background:rgba(184,148,63,0.15);margin:10px 0"></div>
+    <div style="flex:1;text-align:center;padding:13px 8px">
+      <div style="font-size:15px;margin-bottom:4px">✦</div>
+      <div style="font-size:9.5px;color:#9A7A2F;letter-spacing:.04em;font-weight:600;line-height:1.45">TƯ VẤN<br>CÁ NHÂN HOÁ</div>
+    </div>
+  </div>
+
+  
+
+    <div class="footer">
+    <div style="font-weight:600;color:#3a3020;margin-bottom:3px;font-size:12px">Hà Anh Perfume - since 2022</div>
+    <div>Mỗi giọt hương là một câu chuyện</div>
+  </div>
 </div>
 <script>
 function switchTab(id,btn){
