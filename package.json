@@ -1,0 +1,13 @@
+{
+  "name": "haanhperfume",
+  "version": "1.0.0",
+  "description": "Hà Anh Perfume Landing Page",
+  "main": "build.js",
+  "scripts": {
+    "build": "node build.js",
+    "start": "npx -y browser-sync start --server --files \"index.html\""
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}
