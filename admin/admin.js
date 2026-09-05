@@ -12,7 +12,8 @@
     products: [],
     activeCategory: 'bestsellers',
     editingId: null,
-    pendingImageDataUrl: null, // ảnh mới chọn trong modal, chưa upload
+    pendingImageDataUrl: null, // ảnh chọn từ máy, chưa upload lên server
+    resolvedImageUrl: null, // ảnh dán từ link, server đã tải & lưu xong, dùng luôn
   };
 
   // ---- DOM refs ----
@@ -37,6 +38,8 @@
   var imagePreview = document.getElementById('image-preview');
   var imagePlaceholder = document.getElementById('image-placeholder');
   var imageInput = document.getElementById('image-input');
+  var imageUrlInput = document.getElementById('image-url-input');
+  var imageUrlBtn = document.getElementById('image-url-btn');
   var fieldName = document.getElementById('field-name');
   var fieldDesc = document.getElementById('field-desc');
   var fieldLink = document.getElementById('field-link');
@@ -270,8 +273,10 @@
   function openModal(id) {
     state.editingId = id || null;
     state.pendingImageDataUrl = null;
+    state.resolvedImageUrl = null;
     formError.hidden = true;
     imageInput.value = '';
+    imageUrlInput.value = '';
 
     if (id) {
       var p = state.products.find(function (x) { return x.id === id; });
@@ -311,12 +316,45 @@
       imageInput.value = '';
       return;
     }
+    state.resolvedImageUrl = null;
+    imageUrlInput.value = '';
     var reader = new FileReader();
     reader.onload = function () {
       state.pendingImageDataUrl = reader.result;
       setPreview(reader.result);
     };
     reader.readAsDataURL(file);
+  });
+
+  imageUrlBtn.addEventListener('click', function () {
+    var url = imageUrlInput.value.trim();
+    if (!url) {
+      formError.textContent = 'Vui lòng dán link ảnh trước.';
+      formError.hidden = false;
+      return;
+    }
+    formError.hidden = true;
+    imageUrlBtn.disabled = true;
+    imageUrlBtn.textContent = 'Đang tải ảnh...';
+    fetchJson('/.netlify/functions/upload-image-url', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ url: url }),
+    })
+      .then(function (data) {
+        state.pendingImageDataUrl = null;
+        imageInput.value = '';
+        state.resolvedImageUrl = data.url;
+        setPreview(data.url);
+      })
+      .catch(function (err) {
+        formError.textContent = err.message || 'Không tải được ảnh từ link này.';
+        formError.hidden = false;
+      })
+      .finally(function () {
+        imageUrlBtn.disabled = false;
+        imageUrlBtn.textContent = 'Dùng ảnh này';
+      });
   });
 
   productForm.addEventListener('submit', function (e) {
@@ -357,6 +395,9 @@
   });
 
   function uploadImageIfNeeded() {
+    // Ảnh dán từ link: server đã tải & lưu ngay lúc bấm "Dùng ảnh này", dùng luôn không cần upload lại.
+    if (state.resolvedImageUrl) return Promise.resolve(state.resolvedImageUrl);
+    // Ảnh chọn từ máy: chỉ upload lúc bấm Lưu.
     if (!state.pendingImageDataUrl) return Promise.resolve(null);
     return fetchJson('/.netlify/functions/upload-image', {
       method: 'POST',
