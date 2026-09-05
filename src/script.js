@@ -49,8 +49,16 @@ function scentCardHtml(item){
   '</a>';
 }
 
-function sortByOrder(a, b){
-  return (a.order || 0) - (b.order || 0);
+function orderOf(p, category){
+  return (p.order && p.order[category]) || 0;
+}
+
+function inCategory(p, category){
+  return Array.isArray(p.categories) && p.categories.indexOf(category) !== -1;
+}
+
+function byOrderIn(category){
+  return function(a, b){ return orderOf(a, category) - orderOf(b, category); };
 }
 
 function loadProducts(){
@@ -69,7 +77,7 @@ function loadProducts(){
     .then(function(data){
       var products = (data && data.products) || [];
 
-      var bestsellers = products.filter(function(p){ return p.category === 'bestsellers'; }).sort(sortByOrder);
+      var bestsellers = products.filter(function(p){ return inCategory(p, 'bestsellers'); }).sort(byOrderIn('bestsellers'));
       if (bestsellersRoot) {
         bestsellersRoot.innerHTML = bestsellers.length
           ? bestsellers.map(function(item, i){ return bestsellerCardHtml(item, i + 1); }).join('')
@@ -79,7 +87,7 @@ function loadProducts(){
       ['nu', 'nam', 'unisex'].forEach(function(cat){
         var grid = grids[cat];
         if (!grid) { return; }
-        var items = products.filter(function(p){ return p.category === cat; }).sort(sortByOrder);
+        var items = products.filter(function(p){ return inCategory(p, cat); }).sort(byOrderIn(cat));
         grid.innerHTML = items.length
           ? items.map(scentCardHtml).join('')
           : '<div class="empty-note">Chưa có sản phẩm nào.</div>';

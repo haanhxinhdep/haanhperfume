@@ -76,13 +76,13 @@
       <label class="field-label">Link Shopee *</label>
       <input type="url" id="field-link" placeholder="https://..." required>
 
-      <label class="field-label">Danh mục *</label>
-      <select id="field-category">
-        <option value="bestsellers">Bán chạy nhất</option>
-        <option value="nu">Nước hoa nữ</option>
-        <option value="nam">Nước hoa nam</option>
-        <option value="unisex">Unisex</option>
-      </select>
+      <label class="field-label">Danh mục * <span class="field-hint">(chọn được nhiều)</span></label>
+      <div class="category-checks" id="category-checks">
+        <label class="cat-check"><input type="checkbox" value="bestsellers"> Bán chạy nhất</label>
+        <label class="cat-check"><input type="checkbox" value="nu"> Nước hoa nữ</label>
+        <label class="cat-check"><input type="checkbox" value="nam"> Nước hoa nam</label>
+        <label class="cat-check"><input type="checkbox" value="unisex"> Unisex</label>
+      </div>
 
       <div id="form-error" class="form-error" hidden></div>
 
