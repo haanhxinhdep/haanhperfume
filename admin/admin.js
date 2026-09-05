@@ -35,6 +35,7 @@
   var productForm = document.getElementById('product-form');
   var modalTitle = document.getElementById('modal-title');
   var imagePreview = document.getElementById('image-preview');
+  var imagePlaceholder = document.getElementById('image-placeholder');
   var imageInput = document.getElementById('image-input');
   var fieldName = document.getElementById('field-name');
   var fieldDesc = document.getElementById('field-desc');
@@ -47,6 +48,19 @@
   var PLACEHOLDER_IMG = 'data:image/svg+xml;utf8,' + encodeURIComponent(
     '<svg xmlns="http://www.w3.org/2000/svg" width="80" height="80"><rect width="80" height="80" fill="#F7F0E3"/></svg>'
   );
+
+  // Đổi ảnh xem trước trong modal: có ảnh thì hiện ảnh, không có thì hiện icon placeholder.
+  function setPreview(url) {
+    if (url) {
+      imagePreview.src = url;
+      imagePreview.hidden = false;
+      imagePlaceholder.hidden = true;
+    } else {
+      imagePreview.hidden = true;
+      imagePreview.removeAttribute('src');
+      imagePlaceholder.hidden = false;
+    }
+  }
 
   // ---- Helpers ----
   function escapeHtml(str) {
@@ -247,14 +261,14 @@
       fieldDesc.value = p.desc || '';
       fieldLink.value = p.link || '';
       fieldCategory.value = p.category;
-      imagePreview.src = p.image || PLACEHOLDER_IMG;
+      setPreview(p.image || null);
     } else {
       modalTitle.textContent = 'Thêm sản phẩm';
       fieldName.value = '';
       fieldDesc.value = '';
       fieldLink.value = '';
       fieldCategory.value = state.activeCategory;
-      imagePreview.src = PLACEHOLDER_IMG;
+      setPreview(null);
     }
     modalOverlay.hidden = false;
     fieldName.focus();
@@ -281,7 +295,7 @@
     var reader = new FileReader();
     reader.onload = function () {
       state.pendingImageDataUrl = reader.result;
-      imagePreview.src = reader.result;
+      setPreview(reader.result);
     };
     reader.readAsDataURL(file);
   });

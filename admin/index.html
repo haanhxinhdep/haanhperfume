@@ -57,8 +57,14 @@
 
       <label class="field-label">Ảnh sản phẩm</label>
       <div class="image-picker">
-        <img id="image-preview" class="image-preview" alt="Xem trước ảnh">
-        <input type="file" id="image-input" accept="image/png,image/jpeg,image/webp,image/gif">
+        <div class="image-box">
+          <img id="image-preview" class="image-preview" alt="Ảnh sản phẩm" hidden>
+          <div id="image-placeholder" class="image-placeholder">
+            <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="3"/><circle cx="8.5" cy="10.5" r="1.5"/><path d="M21 15l-5-5L5 19"/></svg>
+          </div>
+        </div>
+        <label for="image-input" class="upload-btn">Tải ảnh lên</label>
+        <input type="file" id="image-input" class="visually-hidden-input" accept="image/png,image/jpeg,image/webp,image/gif">
       </div>
 
       <label class="field-label">Tên sản phẩm *</label>
