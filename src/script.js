@@ -19,16 +19,19 @@ function escapeHtml(str){
     .replace(/'/g, '&#039;');
 }
 
+var BRAND_TAG = '<span class="card-brand-tag">Hà Anh Perfume</span>';
+
 function bestsellerCardHtml(item, rank){
   var name = escapeHtml(item.name);
   return '<a class="bs-card" href="' + escapeHtml(item.link) + '" target="_blank" rel="noopener">' +
     '<div class="bs-img">' +
       '<img src="' + escapeHtml(item.image || '') + '" alt="' + name + '" loading="lazy">' +
       '<div class="bs-rank bs-rank-' + (rank === 1 ? '1' : 'n') + '">' + rank + '</div>' +
+      BRAND_TAG +
     '</div>' +
     '<div class="bs-body">' +
       '<div class="bs-name">' + name + '</div>' +
-      '<div class="bs-note">' + escapeHtml(item.desc) + '</div>' +
+      (item.desc ? '<div class="bs-note">' + escapeHtml(item.desc) + '</div>' : '') +
       '<div class="bs-link">' + SHOPEE_ICON + '</div>' +
     '</div>' +
   '</a>';
@@ -39,11 +42,12 @@ function scentCardHtml(item){
   return '<a class="scent-card" href="' + escapeHtml(item.link) + '" target="_blank" rel="noopener">' +
     '<div class="scent-img">' +
       '<img src="' + escapeHtml(item.image || '') + '" alt="' + name + '" loading="lazy">' +
+      BRAND_TAG +
       '<div class="overlay"><div class="overlay-name">' + name + '</div></div>' +
     '</div>' +
     '<div class="scent-body">' +
       '<div class="scent-name">' + name + '</div>' +
-      '<div class="scent-desc">' + escapeHtml(item.desc) + '</div>' +
+      (item.desc ? '<div class="scent-desc">' + escapeHtml(item.desc) + '</div>' : '') +
       '<div class="scent-cta">' + SHOPEE_ICON + '</div>' +
     '</div>' +
   '</a>';
