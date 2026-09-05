@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Quản lý sản phẩm - Hà Anh Perfume</title>
+  <meta name="robots" content="noindex, nofollow">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;1,400&family=Be+Vietnam+Pro:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="admin.css">
+</head>
+<body>
+
+  <!-- Màn hình đăng nhập -->
+  <section id="login-screen" class="login-screen">
+    <form id="login-form" class="login-card">
+      <div class="login-title">Hà Anh Perfume</div>
+      <div class="login-sub">Đăng nhập trang quản lý sản phẩm</div>
+      <input type="password" id="login-password" placeholder="Mật khẩu" autocomplete="current-password" required>
+      <button type="submit">Đăng nhập</button>
+      <div id="login-error" class="form-error" hidden></div>
+    </form>
+  </section>
+
+  <!-- Dashboard -->
+  <div id="dashboard" class="dashboard" hidden>
+    <header class="topbar">
+      <div class="topbar-title">Quản lý sản phẩm</div>
+      <div class="topbar-actions">
+        <span id="save-status" class="save-status"></span>
+        <button id="logout-btn" class="btn-ghost">Đăng xuất</button>
+      </div>
+    </header>
+
+    <nav class="cat-tabs" id="cat-tabs">
+      <button class="cat-tab active" data-cat="bestsellers">Bán chạy nhất</button>
+      <button class="cat-tab" data-cat="nu">Nước hoa nữ</button>
+      <button class="cat-tab" data-cat="nam">Nước hoa nam</button>
+      <button class="cat-tab" data-cat="unisex">Unisex</button>
+    </nav>
+
+    <main class="product-panel">
+      <div class="panel-toolbar">
+        <div id="product-count" class="product-count"></div>
+        <button id="add-btn" class="btn-primary">+ Thêm sản phẩm</button>
+      </div>
+      <div id="product-list" class="product-list"></div>
+      <div id="empty-state" class="empty-state" hidden>Chưa có sản phẩm nào trong danh mục này.</div>
+    </main>
+  </div>
+
+  <!-- Modal thêm / sửa sản phẩm -->
+  <div id="modal-overlay" class="modal-overlay" hidden>
+    <form id="product-form" class="modal-card">
+      <div class="modal-title" id="modal-title">Thêm sản phẩm</div>
+
+      <label class="field-label">Ảnh sản phẩm</label>
+      <div class="image-picker">
+        <img id="image-preview" class="image-preview" alt="Xem trước ảnh">
+        <input type="file" id="image-input" accept="image/png,image/jpeg,image/webp,image/gif">
+      </div>
+
+      <label class="field-label">Tên sản phẩm *</label>
+      <input type="text" id="field-name" required maxlength="120">
+
+      <label class="field-label">Mô tả ngắn</label>
+      <input type="text" id="field-desc" maxlength="200">
+
+      <label class="field-label">Link Shopee *</label>
+      <input type="url" id="field-link" placeholder="https://..." required>
+
+      <label class="field-label">Danh mục *</label>
+      <select id="field-category">
+        <option value="bestsellers">Bán chạy nhất</option>
+        <option value="nu">Nước hoa nữ</option>
+        <option value="nam">Nước hoa nam</option>
+        <option value="unisex">Unisex</option>
+      </select>
+
+      <div id="form-error" class="form-error" hidden></div>
+
+      <div class="modal-actions">
+        <button type="button" id="cancel-btn" class="btn-ghost">Huỷ</button>
+        <button type="submit" id="save-btn" class="btn-primary">Lưu</button>
+      </div>
+    </form>
+  </div>
+
+  <script src="admin.js"></script>
+</body>
+</html>
