@@ -27,9 +27,9 @@ function bestsellerCardHtml(item, rank){
     '<div class="bs-img">' +
       '<img src="' + escapeHtml(item.image || '') + '" alt="' + name + '" loading="lazy">' +
       '<div class="bs-rank bs-rank-' + (rank === 1 ? '1' : 'n') + '">' + rank + '</div>' +
+      BRAND_TAG +
     '</div>' +
     '<div class="bs-body">' +
-      BRAND_TAG +
       '<div class="bs-name">' + name + '</div>' +
       (item.desc ? '<div class="bs-note">' + escapeHtml(item.desc) + '</div>' : '') +
       '<div class="bs-link">' + SHOPEE_ICON + '</div>' +
@@ -42,10 +42,10 @@ function scentCardHtml(item){
   return '<a class="scent-card" href="' + escapeHtml(item.link) + '" target="_blank" rel="noopener">' +
     '<div class="scent-img">' +
       '<img src="' + escapeHtml(item.image || '') + '" alt="' + name + '" loading="lazy">' +
+      BRAND_TAG +
       '<div class="overlay"><div class="overlay-name">' + name + '</div></div>' +
     '</div>' +
     '<div class="scent-body">' +
-      BRAND_TAG +
       '<div class="scent-name">' + name + '</div>' +
       (item.desc ? '<div class="scent-desc">' + escapeHtml(item.desc) + '</div>' : '') +
       '<div class="scent-cta">' + SHOPEE_ICON + '</div>' +
