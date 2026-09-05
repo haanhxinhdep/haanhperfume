@@ -1,6 +1,6 @@
 const crypto = require('crypto');
-const { getStore } = require('@netlify/blobs');
 const { isAuthenticated } = require('./_auth');
+const { getStoreSafe } = require('./_store');
 
 const STORE_NAME = 'images';
 const MAX_BYTES = 5 * 1024 * 1024; // 5MB
@@ -35,7 +35,12 @@ exports.handler = async (event) => {
 
   const id = crypto.randomBytes(8).toString('hex');
   const key = `${id}.${ext}`;
-  const store = getStore(STORE_NAME);
+  let store;
+  try {
+    store = getStoreSafe(STORE_NAME);
+  } catch (e) {
+    return json(500, { error: e.message });
+  }
   await store.set(key, raw, { metadata: { contentType } });
 
   return json(200, { url: `/.netlify/functions/get-image?id=${encodeURIComponent(key)}` });

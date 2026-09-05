@@ -1,4 +1,4 @@
-const { getStore } = require('@netlify/blobs');
+const { getStoreSafe } = require('./_store');
 
 const STORE_NAME = 'images';
 const SAFE_ID_RE = /^[a-zA-Z0-9_-]+\.[a-zA-Z0-9]+$/;
@@ -9,7 +9,12 @@ exports.handler = async (event) => {
     return { statusCode: 400, body: 'Thiếu hoặc sai id ảnh' };
   }
 
-  const store = getStore(STORE_NAME);
+  let store;
+  try {
+    store = getStoreSafe(STORE_NAME);
+  } catch (e) {
+    return { statusCode: 500, body: e.message };
+  }
   const result = await store.getWithMetadata(id, { type: 'arrayBuffer' });
   if (!result) {
     return { statusCode: 404, body: 'Không tìm thấy ảnh' };

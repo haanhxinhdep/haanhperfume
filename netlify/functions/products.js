@@ -1,5 +1,5 @@
-const { getStore } = require('@netlify/blobs');
 const { isAuthenticated } = require('./_auth');
+const { getStoreSafe } = require('./_store');
 
 const STORE_NAME = 'shop';
 const KEY = 'products.json';
@@ -23,16 +23,17 @@ const DEFAULT_PRODUCTS = [
 ];
 
 exports.handler = async (event) => {
-  const store = getStore(STORE_NAME);
-
   if (event.httpMethod === 'GET') {
-    let data = null;
+    let products = DEFAULT_PRODUCTS;
     try {
-      data = await store.get(KEY, { type: 'json' });
+      const store = getStoreSafe(STORE_NAME);
+      const data = await store.get(KEY, { type: 'json' });
+      if (data && Array.isArray(data.products)) {
+        products = data.products;
+      }
     } catch (e) {
-      // Nếu Blobs chưa sẵn sàng vì lý do gì đó, vẫn trả về dữ liệu mặc định thay vì lỗi trắng trang.
+      // Blobs chưa sẵn sàng/chưa cấu hình -> vẫn trả về dữ liệu mặc định, không để trắng trang chủ.
     }
-    const products = data && Array.isArray(data.products) ? data.products : DEFAULT_PRODUCTS;
     return json(200, { products });
   }
 
@@ -62,6 +63,13 @@ exports.handler = async (event) => {
       if (!CATEGORIES.includes(p.category)) {
         return json(400, { error: `Sản phẩm "${p.name}" có danh mục không hợp lệ` });
       }
+    }
+
+    let store;
+    try {
+      store = getStoreSafe(STORE_NAME);
+    } catch (e) {
+      return json(500, { error: e.message });
     }
 
     await store.setJSON(KEY, { products: body.products });
